@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Malla Nutrición y Dietética Interactiva</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f7e9f0;
+    color: #5a2a53;
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  ul.semestre {
+    list-style: none;
+    padding: 0;
+  }
+  ul.semestre li {
+    background: #f7d9e0;
+    border: 2px solid #b98caa;
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+  ul.semestre li.locked {
+    background: #ddd;
+    color: #aaa;
+    cursor: default;
+    text-decoration: none !important;
+  }
+  ul.semestre li.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+  }
+  ul.semestre li:hover:not(.locked):not(.completed) {
+    background: #eebde1;
+  }
+  .semestre-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #b98caa;
+    padding-bottom: 5px;
+  }
+  #resetBtn {
+    background-color: #a36a8e;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  #resetBtn:hover {
+    background-color: #b98caa;
+  }
+</style>
+</head>
+<body>
+<h1>Malla Nutrición y Dietética - Interactiva</h1>
+
+<!-- Semestres -->
+<div id="malla">
+
+  <div class="semestre" data-sem="1">
+    <div class="semestre-title">1er Semestre</div>
+    <ul class="semestre-list">
+      <li data-id="qgo" data-prereq="">Química General y Orgánica (Anual)</li>
+      <li data-id="coe1" data-prereq="">Comunicación Oral y Escrita I (Semestral)</li>
+      <li data-id="ing1" data-prereq="">Inglés I (Semestral)</li>
+      <li data-id="bio" data-prereq="">Biología (Semestral)</li>
+      <li data-id="mat" data-prereq="">Matemáticas (Semestral)</li>
+      <li data-id="orient" data-prereq="">Orientación Disciplinar (Semestral)</li>
+      <li data-id="cda" data-prereq="">Ciencia de los Alimentos (Semestral)</li>
+    </ul>
+  </div>
+
+  <div class="semestre" data-sem="2">
+    <div class="semestre-title">2do Semestre</div>
+    <ul class="semestre-list">
+      <li data-id="coe2" data-prereq="coe1">Comunicación Oral y Escrita II (Semestral)</li>
+      <li data-id="ing2" data-prereq="ing1">Inglés II (Semestral)</li>
+      <li data-id="anathist" data-prereq="bio">Anatomía e Histología (Semestral)</li>
+      <li data-id="bioestatdesc" data-prereq="mat">Bioestadística Descriptiva (Semestral)</li>
+      <li data-id="nutcomfam" data-prereq="orient">Nutrición y Salud Comunitario Familiar (Semestral)</li>
+      <li data-id="polproal" data-prereq="cda">Políticas y Programas Alimentarios (Semestral)</li>
+      <li data-id="nutpsic" data-prereq="orient">Nutrición y Psicología Conductual (Semestral)</li>
+      <li data-id="depor1" data-prereq="">Deporte I (Semestral)</li>
+    </ul>
+  </div>
+
+  <div class="semestre" data-sem="3">
+    <div class="semestre-title">3er Semestre</div>
+    <ul class="semestre-list">
+      <li data-id="bioquim" data-prereq="bio,qgo">Bioquímica Nutricional (Anual)</li>
+      <li data-id="intclin1" data-prereq="nutpsic,nutcomfam,anathist,qgo">Integración Clínica I (Anual)</li>
+      <li data-id="autogest" data-prereq="">Autogestión del Aprendizaje (Semestral)</li>
+      <li data-id="ing3" data-prereq="ing2">Inglés III (Semestral)</li>
+      <li data-id="depor2" data-prereq="">Deporte II (Semestral)</li>
+      <li data-id="fisio" data-prereq="anathist">Fisiología (Semestral)</li>
+      <li data-id="epi" data-prereq="nutcomfam,bioestatdesc">Epidemiología (Semestral)</li>
+      <li data-id="bromat" data-prereq="cda,bio,qgo">Bromatología y Análisis Sensorial de los Alimentos (Semestral)</li>
+      <li data-id="marknut" data-prereq="nutpsic,polproal">Marketing Nutricional (Semestral)</li>
+    </ul>
+  </div>
+
+  <div class="semestre" data-sem="4">
+    <div class="semestre-title">4to Semestre</div>
+    <ul class="semestre-list">
+      <li data-id="trabajoequipo" data-prereq="autogest">Trabajo en Equipo y Desarrollo de Habilidades Sociales (Semestral)</li>
+      <li data-id="ing4" data-prereq="ing3">Inglés IV (Semestral)</li>
+      <li data-id="fisiopato" data-prereq="fisio">Fisiopatología (Semestral)</li>
+      <li data-id="microbio" data-prereq="bio">Microbiología (Semestral)</li>
+      <li data-id="gestinocu" data-prereq="marknut">Gestión de la Inocuidad Alimentaria (Semestral)</li>
+    </ul>
+  </div>
+
+  <div class="semestre" data-sem="5">
+    <div class="semestre-title">5to Semestre</div>
+    <ul class="semestre-list">
+      <li data-id="evalnut" data-prereq="fisiopato,bioquim" data-anual="true">Evaluación Nutricional en el Ciclo Vital (Anual)</li>
+      <li data-id="nutrsalenf" data-prereq="fisiopato,bioquim" data-anual="true">Nutrición en Salud y Enfermedad (Anual)</li>
+      <li data-id="nutcomedu" data-prereq="fisiopato,bioquim" data-anual="true">Nutrición Comunitaria y Educación Alimentaria (Anual)</li>
+      <li data-id="labdiet" data-prereq="gestinocu,microbio" data-anual="true">Laboratorio de Dietotécnicas (Anual)</li>
+      <li data-id="intclin2" data-prereq="fisiopato,intclin1,bioquim" data-anual="true">Integración Clínica II (Anual)</li>
+      <li data-id="compcontexsoc" data-prereq="coe2">Comprensión de Contextos Sociales (Semestral)</li>
+      <li data-id="ing5" data-prereq="ing4">Inglés V (Semestral)</li>
+      <li data-id="bioestatinf" data-prereq="epi">Bioestadística Inferencial (Semestral)</li>
+    </ul>
+  </div>
+
+  <div class="semestre" data-sem="6">
+    <div class="semestre-title">6to Semestre</div>
+    <ul class="semestre-list">
+      <li data-id="compcontexcul" data-prereq="compcontexsoc">Comprensión de Contextos Culturales (Semestral)</li>
+      <li data-id="ing6" data-prereq="ing5">Inglés VI (Semestral)</li>
+      <li data-id="metodinv" data-prereq="bioestatinf">Metodología de la Investigación (Semestral)</li>
+      <li data-id="nutfarma" data-prereq="fisiopato,bioquim">Nutrición, Fármacos y Toxicología (Semestral)</li>
+    </ul>
+  </div>
+
+  <div class="semestre" data-sem="7">
+    <div class="semestre-title">7mo Semestre</div>
+    <ul class="semestre-list">
+      <li data-id="soportenut" data-prereq="nutfarma,intclin2,nutrsalenf,evalnut,labdiet" data-anual="true">Soporte Nutricional Intensivo (Anual)</li>
+      <li data-id="biotecalimentos" data-prereq="labdiet" data-anual="true">Biotecnología de Alimentos (Anual)</li>
+      <li data-id="gestauditoria" data-prereq="labdiet" data-anual="true">Gestión y Auditoría en Servicios de Alimentos (Anual)</li>
+      <li data-id="intclin3" data-prereq="intclin2,nutcomedu,nutrsalenf,evalnut" data-anual="true">Integración Clínica III (Anual)</li>
+      <li data-id="etica" data-prereq="compcontexsoc,trabajoequipo">Ética y Responsabilidad Social (Semestral)</li>
+      <li data-id="nutgeronto" data-prereq="nutfarma,nutrsalenf,evalnut">Nutrición y Gerontología (Semestral)</li>
+      <li data-id="gastronterapeutica" data-prereq="labdiet">Gastronomía Terapéutica y Culinaria Experimental (Semestral)</li>
+      <li data-id="proyinvest" data-prereq="metodinv,nutrsalenf">Proyectos de Investigación en Alimentos y Nutrición (Semestral)</li>
+    </ul>
+  </div>
+
+  <div class="semestre" data-sem="8">
+    <div class="semestre-title">8vo Semestre</div>
+    <ul class="semestre-list">
+      <li data-id="resp_social" data-prereq="etica">Responsabilidad Social (Semestral)</li>
+      <li data-id="nut_actfisdep" data-prereq="nutgeronto,nutcomedu">Nutrición, Actividad Física y Deporte (Semestral)</li>
+      <li data-id="invest_alimnut" data-prereq="proyinvest">Investigación en Alimentos y Nutrición (Semestral)</li>
+    </ul>
+  </div>
+
+  <div class="semestre" data-sem="9">
+    <div class="semestre-title">9no Semestre</div>
+    <ul class="semestre-list">
+      <li data-id="internado" data-prereq="invest_alimnut,nut_actfisdep,resp_social,proyinvest,gastronterapeutica,nutgeronto,etica,intclin3,gestauditoria,biotecalimentos,soportenut" data-anual="true">Internado Profesional (Anual)</li>
+    </ul>
+  </div>
+
+</div>
+
+<button id="resetBtn">Reiniciar Progreso</button>
+
+<script>
+  // Almacena el progreso en localStorage usando IDs
+  const STORAGE_KEY = "mallaNutricionProgreso";
+
+  // Carga el progreso guardado
+  function cargarProgreso() {
+    const progresoJSON = localStorage.getItem(STORAGE_KEY);
+    return progresoJSON ? JSON.parse(progresoJSON) : {};
+  }
+
+  // Guarda el progreso en localStorage
+  function guardarProgreso(progreso) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(progreso));
+  }
+
+  // Verifica si un ramo está desbloqueado
+  // Para desbloquearlo, todos sus prerrequisitos deben estar completados
+  function estaDesbloqueado(prereqIds, progreso) {
+    if (!prereqIds) return true; // sin prerrequisitos
+    const prereqs = prereqIds.split(",").map(s => s.trim()).filter(s => s.length > 0);
+    return prereqs.every(id => progreso[id]);
+  }
+
+  // Actualiza la lista según progreso y prerrequisitos
+  function actualizarLista() {
+    const progreso = cargarProgreso();
+
+    document.querySelectorAll("#malla li").forEach(li => {
+      const id = li.dataset.id;
+      const prereq = li.dataset.prereq || "";
+      const desbloqueado = estaDesbloqueado(prereq, progreso);
+
+      if (desbloqueado) {
+        li.classList.remove("locked");
+        if (progreso[id]) {
+          li.classList.add("completed");
+        } else {
+          li.classList.remove("completed");
+        }
+      } else {
+        li.classList.add("locked");
+        li.classList.remove("completed");
+      }
+    });
+  }
+
+  // Maneja click en ramo: tacha o destacha si desbloqueado
+  document.getElementById("malla").addEventListener("click", e => {
+    if (e.target.tagName !== "LI") return;
+    if (e.target.classList.contains("locked")) return;
+
+    const id = e.target.dataset.id;
+    const progreso = cargarProgreso();
+
+    if (progreso[id]) {
+      delete progreso[id];
+    } else {
+      progreso[id] = true;
+    }
+    guardarProgreso(progreso);
+    actualizarLista();
+  });
+
+  // Botón reiniciar progreso
+  document.getElementById("resetBtn").addEventListener("click", () => {
+    if (confirm("¿Seguro quieres reiniciar todo el progreso?")) {
+      localStorage.removeItem(STORAGE_KEY);
+      actualizarLista();
+    }
+  });
+
+  // Inicializar lista al cargar
+  actualizarLista();
+</script>
+</body>
+</html>
